@@ -5,9 +5,25 @@ namespace DRMusicREST.Repositories
 {
     public class MusicRecordRepository : IRepository<MusicRecord>
     {
+
+        private List<MusicRecord> _records;
+        private static int _nextid;
+        public MusicRecordRepository()
+        {
+            _nextid = 0;
+            _records = new List<MusicRecord>();
+        }
         public MusicRecord Add(MusicRecord obj)
         {
-            throw new NotImplementedException();
+            if (obj == null)
+            {
+                return null;
+            }
+            
+            obj.Id = _nextid++;
+            _records.Add(obj);
+            return obj;
+
         }
 
         public MusicRecord Delete(MusicRecord obj)
@@ -17,7 +33,7 @@ namespace DRMusicREST.Repositories
 
         public IEnumerable<MusicRecord> GetAll()
         {
-            throw new NotImplementedException();
+            return _records;
         }
 
         public MusicRecord GetById(int id)
