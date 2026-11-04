@@ -13,40 +13,47 @@ namespace DRMusicREST.Controllers
     {
         private readonly IRepository<MusicRecord> _musicRecordRepository;
 
-        public MusicRecordController(MusicRecordRepository musicRecordRepository)
+        public MusicRecordController(IRepository<MusicRecord> musicRecordRepository)
         {
             _musicRecordRepository = musicRecordRepository;
         }
         // GET: api/<MusicRecordController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public ActionResult<IEnumerable<MusicRecord>> Get()
         {
-            return new string[] { "value1", "value2" };
+            IEnumerable<MusicRecord> records = _musicRecordRepository.GetAll();
+            if (records is null) return NotFound();
+            return Ok(records);
         }
-
+         
         // GET api/<MusicRecordController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ActionResult<MusicRecord> Get(int id)
         {
-            return "value";
+            throw new NotImplementedException();
         }
 
         // POST api/<MusicRecordController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<MusicRecord> Post([FromBody] MusicRecord value)
         {
+            throw new NotImplementedException();
         }
 
         // PUT api/<MusicRecordController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult<MusicRecord> Put(int id, [FromBody] MusicRecord value)
         {
+            throw new NotImplementedException();
         }
 
         // DELETE api/<MusicRecordController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<MusicRecord> Delete(int id)
         {
+            throw new NotImplementedException();
         }
     }
 }

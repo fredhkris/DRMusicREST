@@ -1,18 +1,23 @@
-﻿using DRMusicREST.Models;
+﻿using DRMusicREST.Interfaces;
+using DRMusicREST.Models;
 using DRMusicREST.Repositories;
 
 namespace DrMusicRESTTest
 {
-public class UnitTest1 : IClassFixture<MusicRecordRepository>    {
+    public class UnitTest1
+    {
         private MusicRecordRepository _repo;
 
-        public UnitTest1(MusicRecordRepository repo)
+        public UnitTest1()  
         {
-            _repo = repo;
+            _repo = new(mockData: false);
         }
+
+
         [Fact]
         public void GetallTest()
         {
+            MusicRecordRepository repo = new(mockData: false);
             //arrange
             MusicRecord r1 = new MusicRecord("sang1", "medina", 122, 2004);
             MusicRecord r2 = new MusicRecord("sang2", "hans", 122, 2006);
@@ -22,10 +27,7 @@ public class UnitTest1 : IClassFixture<MusicRecordRepository>    {
             _repo.Add(r2);
             _repo.Add(r3);
             //assert
-            
-            Assert.True(_repo.GetAll().Count() == 3);
+            Assert.Equal(3, _repo.GetAll().Count());
         }
-
-         
     }
 }

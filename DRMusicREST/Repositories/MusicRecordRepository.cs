@@ -1,5 +1,6 @@
 ﻿using DRMusicREST.Interfaces;
 using DRMusicREST.Models;
+using System.Xml.Linq;
 
 namespace DRMusicREST.Repositories
 {
@@ -8,18 +9,30 @@ namespace DRMusicREST.Repositories
 
         private List<MusicRecord> _records;
         private static int _nextid;
-        public MusicRecordRepository()
+
+
+        public MusicRecordRepository(bool mockData = true)
         {
             _nextid = 0;
-            _records = new List<MusicRecord>();
+            _records = new();
+            // Mock data
+            if (mockData)
+            {
+                _records = new()
+                {
+                    new MusicRecord("Record1", "Artist1", 1200, 2000 ),
+                    new MusicRecord("Record2", "Artist2", 1800, 2005 ),
+                };
+            }
         }
+
         public MusicRecord Add(MusicRecord obj)
         {
             if (obj == null)
             {
                 return null;
             }
-            
+
             obj.Id = _nextid++;
             _records.Add(obj);
             return obj;
