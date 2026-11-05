@@ -5,6 +5,8 @@ namespace DRMusicREST.Repositories
 {
     public class MusicRecordRepository : IRepository<MusicRecord>
     {
+        List<MusicRecord> listOfSongs = new List<MusicRecord>();
+
         public MusicRecord Add(MusicRecord obj)
         {
             throw new NotImplementedException();
@@ -17,6 +19,7 @@ namespace DRMusicREST.Repositories
 
         public IEnumerable<MusicRecord> GetAll()
         {
+
             throw new NotImplementedException();
         }
 

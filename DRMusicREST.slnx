@@ -1,4 +1,4 @@
 <Solution>
   <Project Path="DRMusicREST/DRMusicREST.csproj" />
-  <Project Path="DrMusicRESTTest/DrMusicRESTTest.csproj" />
+  <Project Path="TestMusicRecord/TestMusicRecord.csproj" Id="000b8367-174e-4b01-a001-80557aa94973" />
 </Solution>
