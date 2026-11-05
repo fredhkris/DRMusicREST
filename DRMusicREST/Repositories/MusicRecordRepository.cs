@@ -29,9 +29,17 @@ namespace DRMusicREST.Repositories
             return obj;
         }
 
-        public MusicRecord Delete(MusicRecord obj)
+        public MusicRecord Delete(int id)
         {
-            throw new NotImplementedException();
+            foreach(var record in _musicRecords)
+            {
+                if(record.Id == id)
+                {
+                    _musicRecords.Remove(record);
+                    return record;
+                }
+            }
+            return null;
         }
 
         public IEnumerable<MusicRecord> GetAll()
